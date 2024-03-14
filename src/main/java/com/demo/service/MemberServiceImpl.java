@@ -16,7 +16,7 @@ public class MemberServiceImpl implements MemberService {
 	
 	@Override
 	public void insertMember(Member vo) {
-		memberRepo.save(vo); //jpa에서 기본적으로 제공하는 기능
+		memberRepo.save(vo); //JPA에서 기본적으로 제공하는 기능
 	}
 
 	@Override

@@ -79,4 +79,10 @@ public class MemberController {
 		
         return "member/login";
 	}
+	
+	//주소찾기 화면
+	@GetMapping("/find_zip_num")
+	public String findZipNumView() {
+        return "member/findZipNum";
+    }
 }

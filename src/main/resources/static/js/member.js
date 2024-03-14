@@ -59,3 +59,10 @@ function go_save() {
 			"resizable=yes, width=350, height=200");
 	 
  }
+ 
+  function post_zip() {
+	var url = "find_zip_num";
+	
+	window.open(url, "_blank_", "toolbar=no, menubar=no, scrollbars=no, " +
+	"resizable=yes, width=500, height=350");
+}
