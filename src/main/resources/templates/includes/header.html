@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html txmlns:th="http://www.thymleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Nonage Shop</title>
+<link href="css/shopping.css" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"
+	integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
+	crossorigin="anonymous"></script>
+<script type="text/javascript" th:src="@{js/member.js}"></script>
+<script type="text/javascript" th:src="@{js/mypage.js}"></script>
+<script type="text/javascript" th:src="@{js/findIdAndPassword.js}"></script>
+</head>
+
+<body>
+	<!-- <div id="wrap"> -->
+	<div>
+		<!--헤더파일 들어가는 곳 시작 -->
+		<header>
+			<!--로고 들어가는 곳 시작--->
+			<div id="logo">
+				<a th:href="@{/main}"> <img src="images/logo.gif" width="180"
+					height="100" alt="nonageshop">
+				</a>
+			</div>
+			<!--로고 들어가는 곳 끝-->
+			<nav id="catagory_menu">
+				<ul>
+					<th:block th:if="${session.loginUser == null}">
+						<li><a th:href="@{login_form}" style="width: 100px;">LOGIN(CUSTOMER</a> <a
+							th:href="@{admin_login_form}" style="width: 100px;">| ADMIN)</a></li>
+						<li>/</li>
+						<li><a href="contract">JOIN</a></li>
+					</th:block>
+					<th:block th:unless="${session.loginUser == null}">
+						<li style="color: orange">
+							<!-- 사용자명 (로그인ID) 표시-->
+							[[${session.loginUser.name}]]([[${session.loginUser.id}]])
+						</li>
+						<li><a href="logout">LOGOUT</a></li>
+					</th:block>
+					<li>/</li>
+					<li><a href="cart_list">CART</a></li>
+					<li>/</li>
+					<li><a href="mypage">MY PAGE</a></li>
+					<li>/</li>
+					<li><a href="qna_list">Q&amp;A(1:1)</a></li>
+				</ul>
+			</nav>
+
+			<nav id="top_menu">
+				<ul>
+					<li><a href="category?kind=1">Heels</a></li>
+					<li><a href="category?kind=2">Boots</a></li>
+					<li><a href="category?kind=3">Sandals</a></li>
+					<li><a href="category?kind=4">Sneakers</a></li>
+					<li><a href="category?kind=5">On Sale</a></li>
+				</ul>
+			</nav>
+			<div class="clear"></div>
+			<hr>
+		</header>
+	</div>
+	<!--헤더파일 들어가는 곳 끝 -->

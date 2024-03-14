@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http//www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+
+<body>
+	<th:block th:insert="~{/includes/header}"></th:block>
+
+  <!--메인 이미지 들어가는 곳 시작 --->
+  <div class="clear"></div>
+  <div id="main_img">
+    <img src="images/main_img.jpg" >    
+  </div>
+  <!--메인 이미지 들어가는 곳 끝--->
+
+  <div class="clear"></div>   
+
+  <div id="front">   
+    <h2> New Item</h2>     
+    <div id="bestProduct">
+  		<th:block th:each="productVO : ${newProductList}">
+  			<div id="item">
+				<a th:href="@{product_detail(pseq=${productVO.pseq})}">
+					<img th:src="@{/product_images/} + ${productVO.image}"/>
+					<h3 th:text="${productVO.name}"></h3>
+					<p th:text="${productVO.price2}"></p>	
+				</a>  			
+  			</div>
+  		</th:block>
+    </div>
+   <div class="clear"></div>
+     
+    <h2> Best Item</h2>     
+      <div id="bestProduct">
+   		<th:block th:each="productVO : ${bestProductList}">
+  			<div id="item">
+  				<a th:href="@{product_detail(pseq=${productVO.pseq})}">
+					<img th:src="@{/product_images/} + ${productVO.image}"/>
+					<h3 th:text="${productVO.name}"></h3>
+					<p th:text="${productVO.price2}"></p>	
+				</a>  			
+  			</div>
+  		</th:block>
+      </div>
+  <div class="clear"></div>
+  </div>
+  
+  <th:block th:insert="~{/includes/footer}"></th:block>
+</body>
+</html>

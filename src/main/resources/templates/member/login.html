@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<th:block th:insert="~{includes/header}"></th:block>
+<th:block th:insert="~{product/sub_img}"></th:block>
+<th:block th:insert="~{product/sub_menu}"></th:block>   
+  <article>
+    <h1>Login</h1>
+    <form method="post" action="login">
+        <fieldset>
+        <legend></legend>
+          <label>User ID</label>
+          <input name="id" type="text" th:value="${id}"><br> 
+          <label>Password</label> 
+          <input name="pwd" type="password"><br> 
+        </fieldset>
+        <div class="clear"></div>
+        <div id="buttons">
+            <input type="submit" value="로그인" class="submit">
+            <input type="button" value="회원가입" class="cancel"
+                 onclick="location='contract'">
+            <input type="button" value="아이디 비밀번호 찾기" class="submit"
+                 onclick="find_id_form()">     
+        </div>
+    </form>  
+  </article>
+  <br>
+<th:block th:insert="~{includes/footer}"></th:block>  
+
