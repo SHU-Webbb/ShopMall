@@ -1,5 +1,7 @@
 package com.demo.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
+import com.demo.domain.Address;
 import com.demo.domain.Member;
 import com.demo.service.MemberService;
 
@@ -85,4 +88,14 @@ public class MemberController {
 	public String findZipNumView() {
         return "member/findZipNum";
     }
+	
+	//동이름으로 주소 찾기 처리
+	@PostMapping("/find_zip_num")
+    public String findZipNumAction(Address vo, Model model) {
+		List<Address> addrList = memberService.getAddressByDong(vo.getDong());
+		model.addAttribute("addressList", addrList);
+		
+		return "member/findZipNum";
+	}
+	
 }

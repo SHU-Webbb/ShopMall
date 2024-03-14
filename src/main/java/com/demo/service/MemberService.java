@@ -1,5 +1,8 @@
 package com.demo.service;
 
+import java.util.List;
+
+import com.demo.domain.Address;
 import com.demo.domain.Member;
 
 public interface MemberService {
@@ -14,5 +17,8 @@ public interface MemberService {
 	
 	//회원 인증
 	public int confirmID(String id);
+	
+	//동 이름으로 주소 찾기
+	public List<Address> getAddressByDong(String dong);
 	
 }
