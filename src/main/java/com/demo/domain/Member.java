@@ -2,8 +2,10 @@ package com.demo.domain;
 
 import java.util.Date;
 
-import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Temporal;
@@ -21,6 +23,8 @@ import lombok.ToString;
 @Builder
 @NoArgsConstructor  //기본생성자
 @AllArgsConstructor //모든멤버를 가진 생성자
+@DynamicInsert
+@DynamicUpdate
 @Entity
 public class Member {
 	@Id
@@ -31,10 +35,11 @@ public class Member {
 	private String zip_num;
 	private String address;
 	private String phone;
-	@ColumnDefault("'y'")
+	@Column(columnDefinition ="char(1) default 'y'")
 	private String useyn;
+	
 	@Temporal(value = TemporalType.TIMESTAMP)
-	@ColumnDefault("sysdate")
+	@Column(columnDefinition ="DATE default sysdate")
 	private Date regdate;
 	
 }

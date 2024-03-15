@@ -2,11 +2,13 @@ package com.demo.controller;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
@@ -77,7 +79,10 @@ public class MemberController {
 	
 	//회원가입 처리
 	@PostMapping("/join")
-    public String joinAction(Member vo) {
+    public String joinAction(@RequestParam(value="addr1", defaultValue="") String addr1,
+    						 @RequestParam(value="addr2", defaultValue="") String addr2,
+    						 	Member vo) {
+		vo.setAddress(addr1+ " " + addr2);
 		memberService.insertMember(vo);
 		
         return "member/login";
