@@ -2,6 +2,7 @@ package com.demo.domain;
 
 import java.util.Date;
 
+
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
@@ -23,8 +24,8 @@ import lombok.ToString;
 @Builder
 @NoArgsConstructor  //기본생성자
 @AllArgsConstructor //모든멤버를 가진 생성자
-@DynamicInsert
-@DynamicUpdate
+@DynamicInsert //필요한 값만 insert. (default 값을 저장)
+@DynamicUpdate //필요한 값만 update.
 @Entity
 public class Member {
 	@Id

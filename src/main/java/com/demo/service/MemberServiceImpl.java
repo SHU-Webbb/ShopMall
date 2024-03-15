@@ -70,4 +70,23 @@ public class MemberServiceImpl implements MemberService {
 		return addreRepo.findByDongContaining(dong);
 	}
 
+	@Override
+	public Member getIdByNameEmail(String name, String email) {
+		return memberRepo.findByNameAndEmail(name, email);
+	}
+
+	@Override
+	public Member getPwdByIdNameEmail(String id, String name, String email) {
+		
+		return memberRepo.findByIdAndNameAndEmail(id, name, email);
+	}
+
+	@Override
+	public void changePassword(Member vo) {
+		memberRepo.changePassword(vo.getId(), vo.getPwd());
+	}
+
+
+	
+
 }

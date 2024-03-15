@@ -47,4 +47,10 @@ public class MemberRepositoryTest {
 		memberRepo.save(member2);
 		
 	}
+	
+	@Test
+	public void testFindByNameAndEmail() {
+		Member member = memberRepo.findByNameAndEmail("홍길동", "hkhong@email.com");
+        System.out.println("member=" + member);
+	}
 }
