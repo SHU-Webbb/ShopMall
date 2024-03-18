@@ -6,34 +6,34 @@
   <article>
     <h2> [[${title}]] </h2>
     <form name="formm" method="post">
-      <h3> ì£¼ë¬¸ì ì •ë³´ </h3>     
+      <h3> ÁÖ¹®ÀÚ Á¤º¸ </h3>     
       <table id="cartList">      
       <tr>
-        <th>ì£¼ë¬¸ì¼ì</th> <th>ì£¼ë¬¸ë²ˆí˜¸</th> <th>ì£¼ë¬¸ì</th>
- <th> ì£¼ë¬¸ ì´ì•¡</th>     
+        <th>ÁÖ¹®ÀÏÀÚ</th> <th>ÁÖ¹®¹øÈ£</th> <th>ÁÖ¹®ÀÚ</th>
+ <th> ÁÖ¹® ÃÑ¾×</th>     
      </tr>     
      <tr> 
        <td> [[${#dates.format(order.indate, 'yyyy-MM-dd')}]]</td>
        <td> [[${order.oseq}]] </td>    
        <td> [[${order.member.name}]] </td>
-       <td> [[${#numbers.formatInteger(totalPrice, 3, 'COMMA') + 'ì›'}]]</td>
+       <td> [[${#numbers.formatInteger(totalPrice, 3, 'COMMA') + '¿ø'}]]</td>
      </tr>    
      </table>         
-     <h3> ì£¼ë¬¸ ìƒí’ˆ ì •ë³´ </h3> 
+     <h3> ÁÖ¹® »óÇ° Á¤º¸ </h3> 
      <table id="cartList">
      <tr>
-       <th>ìƒí’ˆëª…</th> <th>ìƒí’ˆë³„ì£¼ë¬¸ë²ˆí˜¸</th> <th>ìˆ˜ëŸ‰</th>
- <th>ê°€ê²©</th> <th>ì²˜ë¦¬ ìƒíƒœ</th>    
+       <th>»óÇ°¸í</th> <th>»óÇ°º°ÁÖ¹®¹øÈ£</th> <th>¼ö·®</th>
+ <th>°¡°İ</th> <th>Ã³¸® »óÅÂ</th>    
      </tr>
      <th:block th:each="orderVO : ${order.orderDetailList}">
      <tr>
        <td> [[${orderVO.product.name}]] </td>
        <td> [[${orderVO.odseq}]] </td>          
        <td> [[${orderVO.quantity}]] </td>
-       <td> [[${#numbers.formatInteger(orderVO.quantity * orderVO.product.price2, 3, 'COMMA') + 'ì›'}]] </td>
+       <td> [[${#numbers.formatInteger(orderVO.quantity * orderVO.product.price2, 3, 'COMMA') + '¿ø'}]] </td>
        <td>
-         <span th:if ="${orderVO.result == '1'}">ì§„í–‰ì¤‘</span> 
-         <span th:unless ="${orderVO.result == '1'}" th:style="color:red;">ì²˜ë¦¬ì™„ë£Œ</span>
+         <span th:if ="${orderVO.result == '1'}">ÁøÇàÁß</span> 
+         <span th:unless ="${orderVO.result == '1'}" th:style="color:red;">Ã³¸®¿Ï·á</span>
        </td>
      </tr>
      </th:block>  
@@ -41,7 +41,7 @@
           
      <div class="clear"></div>
      <div id="buttons" style="float: right">
-       <input type="button"  value="ì‡¼í•‘ ê³„ì†í•˜ê¸°"  class="cancel"  onclick="location.href='index'">
+       <input type="button"  value="¼îÇÎ °è¼ÓÇÏ±â"  class="cancel"  onclick="location.href='index'">
      </div>
     </form>  
   </article>

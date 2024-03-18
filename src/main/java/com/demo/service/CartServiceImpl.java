@@ -19,6 +19,9 @@ public class CartServiceImpl implements CartService {
 		cartRepo.save(vo);
 	}
 
+	/*
+	 * 회원 id별 장바구니 목록 조회
+	 */
 	@Override
 	public List<Cart> getCartList(String id) {
 		return cartRepo.getCartList(id);
