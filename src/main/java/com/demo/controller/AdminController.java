@@ -48,4 +48,10 @@ public class AdminController {
 		}
 
       }
+	
+	@GetMapping("/admin_product_list")
+	public String adminProductList() {
+		
+		return "admin/productList";
+	}
 }

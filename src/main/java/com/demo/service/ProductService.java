@@ -15,4 +15,7 @@ public interface ProductService {
 	public Product getProduct(int pseq);
 	
 	public List<Product> getProductListByKind(String kind);
+	
+	//이름을 조건으로 전체 상품 조회
+	public List<Product> getAllProducts(String name);
 }
