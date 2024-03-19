@@ -118,4 +118,17 @@ public class OrderRepositoryTest {
 			System.out.println(oseq);
 		}
  	}
+	@Disabled
+	@Test
+	public void testGetOrderByMemberId() {
+        Orders order = orderRepo.getOrderByMemberId("one", 2);
+        
+        System.out.println("<<<주문 내역 조회>>>");
+        System.out.println("주문번호 :"+ order.getOseq());
+        System.out.println("주문일자 :" + order.getIndate());
+        System.out.println("====================================");
+        for(int i=0; i<order.getOrderDetailList().size(); i++) {
+        	System.out.println(order.getOrderDetailList().get(i));
+        }
+    }
 }

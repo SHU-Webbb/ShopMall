@@ -62,8 +62,13 @@ public class OrderSeuvceImpl implements OrderService {
 	}
 
 	@Override
-	public List<OrderDetail> getListOrderById(String id, int oseq) {
+	public List<OrderDetail> getListOrderDetailById(String id, int oseq) {
 		return orderRepo.getListOrderById(id, oseq, "1");
+	}
+	
+	@Override
+	public Orders getListOrderById(String id, int oseq) {
+		return orderRepo.getOrderByMemberId(id,oseq);
 	}
 
 	@Override
@@ -87,5 +92,8 @@ public class OrderSeuvceImpl implements OrderService {
 	public void insertOrderDetail(OrderDetail vo) {
 		orderDetailRepo.save(vo);
 	}
+
+	
+	
 
 }

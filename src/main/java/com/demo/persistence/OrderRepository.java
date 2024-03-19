@@ -14,7 +14,7 @@ public interface OrderRepository extends JpaRepository<Orders, Integer> {
 	@Query(value="SELECT NVL2(MAX(oseq), MAX(oseq)+1 ,1) FROM orders", nativeQuery = true)
 	public int selectMaxOseq();
 	
-	//사용자별 주문내역 조회(JPQL 사용할때는 - 도메인 클래스명 사용)
+	//사용자별 주문상세내역 조회(JPQL 사용할때는 - 도메인 클래스명 사용)
 	@Query("SELECT od FROM OrderDetail od " +
 			"INNER JOIN Orders o ON od.order.oseq=o.oseq " +
 			"INNER JOIN Product p ON od.product.pseq= p.pseq " +
@@ -22,10 +22,18 @@ public interface OrderRepository extends JpaRepository<Orders, Integer> {
 			"WHERE o.member.id =?1 AND od.order.oseq=?2 AND od.result LIKE %?3%")
 	public List<OrderDetail> getListOrderById(String id, int oseq, String result);
 	
+	//사용자별 주문내역 조회
+	@Query("SELECT order FROM Orders order " +
+			"INNER JOIN Member m ON order.member.id = m.id " +
+			"WHERE order.member.id =?1 AND order.oseq=?2")
+	public Orders getOrderByMemberId(String id, int oseq);
+	
 	//사용자별 전체 주문번호 조회
 	@Query("SELECT DISTINCT od.order.oseq FROM OrderDetail od "
 			+ "INNER JOIN Orders o ON od.order.oseq = o.oseq "
 			+ "INNER JOIN Member m ON o.member.id = m.id "
-			+ "WHERE o.member.id =?1 AND od.result = ?2 ORDER BY od.order.oseq DESC")
+			+ "WHERE o.member.id =?1 AND od.result LIKE %?2% ORDER BY od.order.oseq DESC")
 	public List<Integer> getSeqOrdering(String id, String result);
+	
+	
 }
