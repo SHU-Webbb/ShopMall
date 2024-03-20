@@ -131,4 +131,18 @@ public class OrderRepositoryTest {
         	System.out.println(order.getOrderDetailList().get(i));
         }
     }
+	
+	@Test
+	public void testGetOrderListByName() {
+		
+		List<OrderDetail> orderList = orderRepo.getOrderListByName("홍길동");
+		
+        System.out.println("<<< 주문 목록 >>>");
+        for(OrderDetail od : orderList) {
+            System.out.println(od);
+        }
+        System.out.println("====================================");
+        
+		
+	}
 }

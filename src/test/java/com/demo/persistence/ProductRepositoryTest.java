@@ -94,4 +94,13 @@ public class ProductRepositoryTest {
             System.out.println(p);
         }
 	}
+	@Disabled
+	@Test
+	public void testGetAllProducts() {
+		List<Product> products = productRepo.findProductByNameContainingOrderByName("");
+        
+        for (Product p : products) {
+            System.out.println(p);
+        }
+	}
 }

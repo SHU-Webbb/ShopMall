@@ -2,30 +2,30 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <th:block th:insert="~{/admin/header}"></th:block>
 <th:block th:insert="~{/admin/sub_menu}"></th:block>
-
+<meta charset="UTF-8">
 <article>
-<h1>»óÇ°¸®½ºÆ®</h1>	
-<form name="frm" id="prod_form" method="post">
+<h1>ìƒí’ˆë¦¬ìŠ¤íŠ¸</h1>	
+<form name="frm" id="prod_form" method="get">
 <table>
   <tr>
   <td width="642">
-      »óÇ°¸í 
+      ìƒí’ˆëª… 
      <input type="text" name="key" id="key">
-     <input class="btn" type="button" name="btn_search" value="°Ë»ö" onClick="go_search()">
-     <input class="btn" type="button" name="btn_total" value="ÀüÃ¼º¸±â" onClick="go_total()">
-     <input class="btn" type="button" name="btn_write" value="»óÇ°µî·Ï" onClick="go_wrt()">
-     <input class="btn" type="button" name="btn_chart" value="»óÇ°º° ½ÇÀû" onClick="location.href='admin_sales_record_form'">
+     <input class="btn" type="button" name="btn_search" value="ê²€ìƒ‰" onClick="go_search()">
+     <input class="btn" type="button" name="btn_total" value="ì „ì²´ë³´ê¸°" onClick="go_total()">
+     <input class="btn" type="button" name="btn_write" value="ìƒí’ˆë“±ë¡" onClick="go_wrt()">
+     <input class="btn" type="button" name="btn_chart" value="ìƒí’ˆë³„ ì‹¤ì " onClick="location.href='admin_sales_record_form'">
   </td>
   </tr>
 </table>
 <table id="productList">
     <tr>
-        <th>¹øÈ£</th><th>»óÇ°¸í</th><th>¿ø°¡</th><th>ÆÇ¸Å°¡</th><th>µî·ÏÀÏ</th><th>»ç¿ëÀ¯¹«</th>
+        <th>ë²ˆí˜¸</th><th>ìƒí’ˆëª…</th><th>ì›ê°€</th><th>íŒë§¤ê°€</th><th>ë“±ë¡ì¼</th><th>ì‚¬ìš©ìœ ë¬´</th>
     </tr>
     <th:block th:if="${#lists.size(productList) <= 0}">
       <tr>
         <td width="100%" colspan="7" align="center" height="23">
-          µî·ÏµÈ »óÇ°ÀÌ ¾ø½À´Ï´Ù.
+          ë“±ë¡ëœ ìƒí’ˆì´ ì—†ìŠµë‹ˆë‹¤.
         </td>      
       </tr>
     </th:block>
@@ -36,16 +36,16 @@
         <td height="23" align="center" th:text="${status.count}"></td>
         <td style="text-align: left; padding-left: 50px; padding-right: 0px;">   
            <!--  <a href="#" onclick="go_detail('${pageMaker.criteria.pageNum}','${pageMaker.criteria.rowsPerPage}','${productVO.pseq}')">-->
-  		   <a href="#" th:onclick="'javascript:go_detail('+${productVO.pseq}+');'">    
+  		   <a th:href="@{admin_product_detail(pseq=${productVO.pseq})}">    
     	    [[${productVO.name}]]     
    		   </a>
    	    </td>
-   	    <td>[[${#numbers.formatInteger(productVO.price1, 3, 'COMMA') + '¿ø' }]]</td>
-   	    <td>[[${#numbers.formatInteger(productVO.price2, 3, 'COMMA') + '¿ø' }]]</td>
+   	    <td>[[${#numbers.formatInteger(productVO.price1, 3, 'COMMA') + 'ì›' }]]</td>
+   	    <td>[[${#numbers.formatInteger(productVO.price2, 3, 'COMMA') + 'ì›' }]]</td>
    	    <td>[[${#dates.format(productVO.regdate, "yyyy-MM-dd")}]]</td>
         <td>
-          <th:block th:if="${productVO.useyn == 'n'}">¹Ì»ç¿ë</th:block>
-          <th:block th:unless="${productVO.useyn == 'n'}">»ç¿ë</th:block>
+          <th:block th:if="${productVO.useyn == 'n'}">ë¯¸ì‚¬ìš©</th:block>
+          <th:block th:unless="${productVO.useyn == 'n'}">ì‚¬ìš©</th:block>
    	    </td> 
       </tr>
     </th:block>

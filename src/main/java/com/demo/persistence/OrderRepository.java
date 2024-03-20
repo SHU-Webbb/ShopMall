@@ -35,5 +35,9 @@ public interface OrderRepository extends JpaRepository<Orders, Integer> {
 			+ "WHERE o.member.id =?1 AND od.result LIKE %?2% ORDER BY od.order.oseq DESC")
 	public List<Integer> getSeqOrdering(String id, String result);
 	
-	
+	@Query("SELECT od FROM OrderDetail od " +
+			"WHERE od.order.member.name LIKE %?1% " +
+			"ORDER BY od.result, od.order.oseq DESC")
+	public List<OrderDetail> getOrderListByName(String mname);
+ 	
 }

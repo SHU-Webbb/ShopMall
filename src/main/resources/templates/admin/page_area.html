@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
-<!--  ê° í™”ë©´ì˜ í˜ì´ì§€ ë²ˆí˜¸ê°€ í‘œì‹œë˜ëŠ” ì˜ì—­ì˜ êµ¬í˜„ -->
+<!--  °¢ È­¸éÀÇ ÆäÀÌÁö ¹øÈ£°¡ Ç¥½ÃµÇ´Â ¿µ¿ªÀÇ ±¸Çö -->
 <div id="page_area">
 	<ul class="pagination" th:with="start=${T(java.lang.Math).floor(pageInfo.number/10)*10 + 1},
 														   last=(${start + 9 < pageInfo.totalPages ? start+9 : pageInfo.totalPages})">
@@ -16,26 +16,26 @@
 					<span aria-hidden="true">First</span>
 				</a>
 			</li>
-			<!--  ì´ì „ í˜ì´ì§€ë¡œ ê°€ê¸° ë²„íŠ¼  -->
+			<!--  ÀÌÀü ÆäÀÌÁö·Î °¡±â ¹öÆ°  -->
 			<li th:class="${pageInfo.first} ? 'disabled'"  class="paging">
 				<a th:href="${pageInfo.first} ? '#' : ${previous}" aria-label="Previous">
 					<span aria-hidden="true">&lt;</span>
 				</a>
 			</li>
 	
-			<!-- [1][2][3]... í‘œì‹œ ë¶€ë¶„ -->
+			<!-- [1][2][3]... Ç¥½Ã ºÎºĞ -->
 			<li th:each="page : ${#numbers.sequence(start, last)}" th:class="${page == pageInfo.number + 1} ? 'active'" class="paging">
 				<a th:text="${page}" th:href="@{/admin_product_list(page=${page})}"></a> 
 			</li>
 		
-			<!--  ë‹¤ìŒ í˜ì´ì§€ë¡œ -->
+			<!--  ´ÙÀ½ ÆäÀÌÁö·Î -->
 			<li th:class="${pageInfo.last} ? 'disabled'" class="paging">
 				<a th:href="@{pageInfo.last} ? '#' : ${next}" aria-label="Next">
 					<span aira-hidden="true">&gt;</span>
 				</a>
 			</li>
 			
-			<!-- ë§¨ ë§ˆì§€ë§‰ í˜ì´ì§€ë¡œ ì´ë™ -->
+			<!-- ¸Ç ¸¶Áö¸· ÆäÀÌÁö·Î ÀÌµ¿ -->
 			<li>
 				<a th:href="${lastPage}" aria-label="Last">
 					<span aria-hidden="true">Last</span>
