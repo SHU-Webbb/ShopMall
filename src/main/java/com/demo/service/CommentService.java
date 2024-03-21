@@ -6,7 +6,7 @@ import com.demo.domain.ProductComment;
 
 public interface CommentService {
 
-	public int saveComment();
+	public void saveComment(ProductComment comment);
 	
 	public List<ProductComment> getCommentList(int pseq);
 	

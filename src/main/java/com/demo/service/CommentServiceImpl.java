@@ -15,8 +15,8 @@ public class CommentServiceImpl implements CommentService {
     private ProductCommentRepository commentRepo;
 	
 	@Override
-	public int saveComment() {
-		return 0;
+	public void saveComment(ProductComment comment) {
+		commentRepo.save(comment);
 	}
 
 	@Override
