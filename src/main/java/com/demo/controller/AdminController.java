@@ -2,6 +2,7 @@ package com.demo.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,9 +19,15 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.demo.domain.Admin;
+import com.demo.domain.Member;
+import com.demo.domain.OrderDetail;
 import com.demo.domain.Product;
+import com.demo.domain.Qna;
 import com.demo.service.AdminService;
+import com.demo.service.MemberService;
+import com.demo.service.OrderService;
 import com.demo.service.ProductService;
+import com.demo.service.QnaService;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -33,6 +40,15 @@ public class AdminController {
 	
 	@Autowired
 	private ProductService productService;
+	
+	@Autowired
+	private OrderService orderService;
+	
+	@Autowired
+	private MemberService memberService;
+	
+	@Autowired
+	private QnaService qnaService;
 	
 	//파일 업로드 경로 저장 변수
 	@Value("${com.demo.upload.path}")
@@ -95,6 +111,22 @@ public class AdminController {
 	 */
 	@GetMapping("/admin_product_list")
     public String adminProductList(
+    		@RequestParam(value = "key", defaultValue ="") String name,
+    		@RequestParam(value = "page", defaultValue ="1") int page,
+    		@RequestParam(value = "size", defaultValue ="10") int size,
+            Model model) {
+    		
+		Page<Product> productList = productService.getAllProductsByName(name,page,size);
+		
+		
+		model.addAttribute("productList", productList.getContent());
+		model.addAttribute("pageInfo", productList);
+		
+		return "admin/product/productList";
+	}
+	
+	@PostMapping("admin_product_list")
+	public String adminProductListGo(
     		@RequestParam(value = "key", defaultValue ="") String name,
     		@RequestParam(value = "page", defaultValue ="1") int page,
     		@RequestParam(value = "size", defaultValue ="10") int size,
@@ -219,4 +251,70 @@ public class AdminController {
 	   return "redirect:admin_product_list";
   }	   
    
+   @RequestMapping("/admin_order_list")
+   public String adminOrderList(@RequestParam(value = "key", defaultValue="") String mname,
+		   Model model) {
+	   	
+	   List<OrderDetail> orderList = orderService.getListOrder(mname);
+	   
+       model.addAttribute("orderList", orderList);
+       
+       
+       return "admin/order/orderList";
+   }
+   
+   @PostMapping("/admin_order_save")
+   public String adminOrderSave(@RequestParam(value="result") Integer[] odseq) {
+	   
+	   for(int i = 0; i < odseq.length; i++) {
+		   
+		   orderService.updateOrderResult(odseq[i]);
+		   
+	   }
+	   
+	   return "redirect:admin_order_list";
+   }
+   
+   @RequestMapping("admin_member_list")
+   public String adminMemberList(Model model, @RequestParam(value="key", defaultValue="") String name) {
+	   
+       List<Member> memberList = memberService.getMemberList(name);
+       
+       model.addAttribute("memberList", memberList);
+       
+       return "admin/member/memberList";
+   
+  }
+   
+   @RequestMapping("admin_qna_list")
+   public String adminQnaList(Model model) {
+	   	
+       List<Qna> qnaList = qnaService.getListAllQna();
+       
+       model.addAttribute("qnaList", qnaList);
+       
+       return "admin/qna/qnaList";
+   }
+   
+   @PostMapping("admin_qna_detail")
+   public String adminQnaDetail(Qna vo, Model model) {
+	   
+	   Qna qna = qnaService.getQna(vo.getQseq());
+	   
+	   model.addAttribute("qnaVO", qna);
+	   
+	   return "admin/qna/qnaDetail";
+   }
+  
+   @PostMapping("admin_qna_repsave")
+   public String adminQnaRepsave(Qna vo) {
+	   
+	  
+       qnaService.updateQna(vo);
+       
+	   
+	   return "redirect:admin_qna_list";
+   }
 }
+
+

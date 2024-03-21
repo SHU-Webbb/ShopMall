@@ -168,5 +168,6 @@ function go_mod_save(){
 		theForm.attr("action", "admin_product_update");
 		theForm.submit();
     }
-	 
+    
 }
+

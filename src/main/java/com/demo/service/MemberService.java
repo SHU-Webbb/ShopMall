@@ -29,4 +29,7 @@ public interface MemberService {
 	
 	//비밀번호 변경
 	public void changePassword(Member vo);
+	
+	//회원 목록 조회
+	public List<Member> getMemberList(String name);
 }

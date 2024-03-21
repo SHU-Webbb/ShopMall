@@ -12,7 +12,7 @@ import com.demo.persistence.OrderDetailRepository;
 import com.demo.persistence.OrderRepository;
 
 @Service
-public class OrderSeuvceImpl implements OrderService {
+public class OrderServiceImpl implements OrderService {
 	
 	@Autowired
 	private OrderRepository orderRepo;
@@ -91,6 +91,11 @@ public class OrderSeuvceImpl implements OrderService {
 	@Override
 	public void insertOrderDetail(OrderDetail vo) {
 		orderDetailRepo.save(vo);
+	}
+
+	@Override
+	public List<OrderDetail> getListOrder(String name) {
+		return orderRepo.getOrderListByName(name);
 	}
 
 	

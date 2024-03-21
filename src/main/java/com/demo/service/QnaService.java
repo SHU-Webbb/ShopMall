@@ -11,5 +11,7 @@ public interface QnaService {
 	
 	List<Qna> getQnaList(String id);
 	
+	List<Qna> getListAllQna();
 	
+	void updateQna(Qna vo);
 }

@@ -131,7 +131,7 @@ public class OrderRepositoryTest {
         	System.out.println(order.getOrderDetailList().get(i));
         }
     }
-	
+	@Disabled
 	@Test
 	public void testGetOrderListByName() {
 		

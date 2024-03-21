@@ -11,4 +11,5 @@ public interface QnaRepository extends JpaRepository<Qna, Integer> {
 	
 	@Query("SELECT q FROM Qna q WHERE q.member.id =?1 ORDER BY q.qseq DESC")
 	public List<Qna> getQnaList(String id);
-}
+	
+	}

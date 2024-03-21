@@ -86,6 +86,11 @@ public class MemberServiceImpl implements MemberService {
 		memberRepo.changePassword(vo.getId(), vo.getPwd());
 	}
 
+	@Override
+	public List<Member> getMemberList(String name) {
+		return memberRepo.findMemberByNameContaining(name);
+	}
+
 
 	
 

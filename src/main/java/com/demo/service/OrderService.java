@@ -28,6 +28,7 @@ public interface OrderService {
 	//주문 상세정보 저장
 	void insertOrderDetail(OrderDetail vo);
 	
-	
+	//회원명을 조건으로 주문목록 조회
+	List<OrderDetail> getListOrder(String name);
 		
 }
