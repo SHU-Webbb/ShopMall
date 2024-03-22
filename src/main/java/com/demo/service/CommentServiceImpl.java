@@ -30,4 +30,9 @@ public class CommentServiceImpl implements CommentService {
 		return 0;
 	}
 
+	@Override
+	public int getCommentTotal(int pseq) {
+		return commentRepo.getTotalCommentCount(pseq);
+	}
+
 }

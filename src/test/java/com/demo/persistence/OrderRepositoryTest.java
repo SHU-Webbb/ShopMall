@@ -12,6 +12,7 @@ import com.demo.domain.Member;
 import com.demo.domain.OrderDetail;
 import com.demo.domain.Orders;
 import com.demo.domain.Product;
+import com.demo.dto.SalesCountInterface;
 
 @SpringBootTest
 public class OrderRepositoryTest {
@@ -142,7 +143,15 @@ public class OrderRepositoryTest {
             System.out.println(od);
         }
         System.out.println("====================================");
-        
+	}
+	@Disabled
+	@Test
+	public void testSalesReport() {
+		List<SalesCountInterface> list = 
+				orderRepo.findSalseCountReport();
 		
+		for(SalesCountInterface s : list) {
+			System.out.printf(" %s : %d\n", s.getPname(), s.getSales_count());
+		}
 	}
 }

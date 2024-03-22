@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.demo.domain.Product;
+import com.demo.service.CommentService;
 import com.demo.service.ProductService;
 
 @Controller
@@ -16,12 +17,15 @@ public class ProductController {
 	@Autowired
 	ProductService productService;
 	
+	@Autowired
+	CommentService commentService;
+	
 	@GetMapping("/product_detail")
     public String productDetailView(Product vo, Model model){
 		//상품 상세 정보 조회
 		Product product = productService.getProduct(vo.getPseq());
 		
-        model.addAttribute("productVO", product);
+	    model.addAttribute("productVO", product);
         
         return "product/productDetail";
 	}

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
@@ -23,6 +24,7 @@ import com.demo.domain.Member;
 import com.demo.domain.OrderDetail;
 import com.demo.domain.Product;
 import com.demo.domain.Qna;
+import com.demo.dto.SalesCountInterface;
 import com.demo.service.AdminService;
 import com.demo.service.MemberService;
 import com.demo.service.OrderService;
@@ -315,6 +317,28 @@ public class AdminController {
 	   
 	   return "redirect:admin_qna_list";
    }
+
+
+	/*
+	 * 제품별 판매 실적 화면표시
+	 */
+
+	@RequestMapping(value="admin_sales_record_form")
+	public String adminProductSalesChart() {
+		return "admin/order/salesRecords";
+		
+	}
+	
+	/*
+	 * 제품별 판매실적 조회 및 데이터 전송
+	 */
+	@RequestMapping(value="sales_record_chart")
+	@ResponseBody
+	public List<SalesCountInterface> salesRecordChart() {
+			
+		List<SalesCountInterface> list = orderService.getProductSales();
+		
+		return list;
+	}
+
 }
-
-

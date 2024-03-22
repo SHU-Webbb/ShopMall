@@ -12,4 +12,8 @@ public interface ProductCommentRepository extends JpaRepository<ProductComment, 
 	@Query("SELECT c FROM ProductComment c " +
 	       "WHERE c.product.pseq = ?1")
 	List<ProductComment> findCommentByPseq(int pseq);
+	
+	@Query("SELECT COUNT(c) FROM ProductComment c " +
+           "WHERE c.product.pseq =?1")
+	int getTotalCommentCount(int pseq);
  }

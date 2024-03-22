@@ -34,27 +34,38 @@ public class CommentController {
 		List<ProductComment> commentList = commentService.getCommentList(pseq);
 		
 		commentInfo.put("commentList", commentList);
+		commentInfo.put("commentCount", commentList.size());
 		
 		return commentInfo;
 	}
 	
 	@PostMapping(value="/save")
-	public String saveCommentAction(ProductComment vo,
+	public Map<String, Object> saveCommentAction(ProductComment vo,
 				@RequestParam(value="pseq") int pseq, HttpSession session) {
-      
+		
+		Map<String, Object> map = new HashMap<>();
+		
 		Member loginUser = (Member) session.getAttribute("loginUser");	
 		
-		if(loginUser == null) {
-    	  return "member/login"; // 로그인 화면으로 이동
-      }else {
+		if(loginUser == null) { //로그인 되어 있지 않음.
+    	  map.put("result", "not_logedin");
+    	  
+        }else if(vo.getContent() == null){
+        	
+        	map.put("result","fail");
+        	
+        }else {
     	  vo.setMember(loginUser);
+    	  
     	  Product p = new Product();
     	  p.setPseq(pseq);
     	  vo.setProduct(p);
     	  
     	 commentService.saveComment(vo);
     	 
-    	 return "success";
+    	 map.put("result","success");
       }
+		
+		return map;
 	}
 }

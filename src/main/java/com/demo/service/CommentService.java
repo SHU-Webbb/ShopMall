@@ -11,4 +11,8 @@ public interface CommentService {
 	public List<ProductComment> getCommentList(int pseq);
 	
 	public int getCountCommnetList(int pseq);
+	
+	public int getCommentTotal(int pseq);
+	
+	
 }

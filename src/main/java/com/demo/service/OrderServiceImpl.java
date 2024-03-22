@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.demo.domain.Cart;
 import com.demo.domain.OrderDetail;
 import com.demo.domain.Orders;
+import com.demo.dto.SalesCountInterface;
 import com.demo.persistence.OrderDetailRepository;
 import com.demo.persistence.OrderRepository;
 
@@ -96,6 +97,11 @@ public class OrderServiceImpl implements OrderService {
 	@Override
 	public List<OrderDetail> getListOrder(String name) {
 		return orderRepo.getOrderListByName(name);
+	}
+
+	@Override
+	public List<SalesCountInterface> getProductSales() {
+		return orderRepo.findSalseCountReport();
 	}
 
 	

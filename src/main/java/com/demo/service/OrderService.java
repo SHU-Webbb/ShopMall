@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.demo.domain.OrderDetail;
 import com.demo.domain.Orders;
+import com.demo.dto.SalesCountInterface;
 
 public interface OrderService {
 	
@@ -30,5 +31,8 @@ public interface OrderService {
 	
 	//회원명을 조건으로 주문목록 조회
 	List<OrderDetail> getListOrder(String name);
+	
+	//제품별 판매실적 조회
+	List<SalesCountInterface> getProductSales();
 		
 }
